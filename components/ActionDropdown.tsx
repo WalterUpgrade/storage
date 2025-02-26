@@ -1,21 +1,7 @@
 "use client";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useState } from "react";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, } from "@/components/ui/dialog";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, } from "@/components/ui/dropdown-menu"; import { useState } from "react";
 import Image from "next/image";
 import { Models } from "node-appwrite";
 import { actionsDropdownItems } from "@/constants";
@@ -23,11 +9,7 @@ import Link from "next/link";
 import { constructDownloadUrl } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import {
-  deleteFile,
-  renameFile,
-  updateFileUsers,
-} from "@/lib/actions/file.actions";
+import { deleteFile, renameFile, updateFileUsers, } from "@/lib/actions/file.actions";
 import { usePathname } from "next/navigation";
 import { FileDetails, ShareInput } from "@/components/ActionsModalContent";
 
@@ -53,6 +35,12 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
     if (!action) return;
     setIsLoading(true);
     let success = false;
+    console.log({
+    action: action.value,
+    fileId: file.$id,
+    bucketFileId: file.bucketFileId,
+    path,
+  });
 
     const actions = {
       rename: () =>

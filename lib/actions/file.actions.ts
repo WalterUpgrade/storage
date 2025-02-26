@@ -46,7 +46,7 @@ export const uploadFile = async ({
       owner: ownerId,
       accountid,
       users: [],
-      bucketField: appwriteConfig.bucketId, // Añadido en la corrección anterior
+      bucketFileId: bucketFile.$id, // Cambia "bucketField" a "bucketFileId" y usa el ID del archivo
 
     };
 
