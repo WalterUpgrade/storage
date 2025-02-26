@@ -8,6 +8,13 @@ import { constructFileUrl, getFileType, parseStringify } from "@/lib/utils";
 import { revalidatePath } from "next/cache";
 import { getCurrentUser } from "@/lib/actions/user.actions";
 
+type UploadFileProps = {
+  file: File;
+  ownerId: string;
+  accountid: string;
+  path: string;
+};
+
 const handleError = (error: unknown, message: string) => {
   console.log(error, message);
   throw error;
@@ -16,7 +23,7 @@ const handleError = (error: unknown, message: string) => {
 export const uploadFile = async ({
   file,
   ownerId,
-  accountId,
+  accountid,
   path,
 }: UploadFileProps) => {
   const { storage, databases } = await createAdminClient();
@@ -37,9 +44,10 @@ export const uploadFile = async ({
       extension: getFileType(bucketFile.name).extension,
       size: bucketFile.sizeOriginal,
       owner: ownerId,
-      accountId,
+      accountid,
       users: [],
-      bucketFileId: bucketFile.$id,
+      bucketField: appwriteConfig.bucketId, // Añadido en la corrección anterior
+
     };
 
     const newFile = await databases
