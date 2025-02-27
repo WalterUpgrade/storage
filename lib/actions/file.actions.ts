@@ -38,16 +38,12 @@ export const uploadFile = async ({
     );
 
     const fileDocument = {
-      type: getFileType(bucketFile.name).type,
       name: bucketFile.name,
       url: constructFileUrl(bucketFile.$id),
-      extension: getFileType(bucketFile.name).extension,
-      size: bucketFile.sizeOriginal,
-      owner: ownerId,
-      accountid,
-      users: [],
-      bucketFileId: bucketFile.$id, // Cambia "bucketField" a "bucketFileId" y usa el ID del archivo
-
+      type: getFileType(bucketFile.name).type,
+      bucketField: bucketFile.$id, // Este campo es requerido según tu configuración
+      accountid, // Este campo también es requerido
+      owner: ownerId, // Este campo es requerido y debe ser la relación con "owner"
     };
 
     const newFile = await databases

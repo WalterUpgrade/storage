@@ -16,8 +16,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export const Chart = ({ used = 0 }: { used: number }) => {
-  const chartData = [{ storage: "used", 10: used, fill: "white" }];
-
+  const chartData = [{ storage: "used", value: 500000, fill: "white" }]; // Valor fijo en bytes
   return (
     <Card className="chart">
       <CardContent className="flex-1 p-0">

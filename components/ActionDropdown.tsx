@@ -40,6 +40,8 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
     fileId: file.$id,
     bucketFileId: file.bucketFileId,
     path,
+    file,
+
   });
 
     const actions = {
